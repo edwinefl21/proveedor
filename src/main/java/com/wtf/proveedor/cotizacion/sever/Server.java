@@ -16,7 +16,7 @@ public class Server {
         // START SNIPPET: publish
         System.out.println("Starting Server");
         CotizacionesImpl implementor = new CotizacionesImpl();
-        String address = "http://localhost:8080/cotizaciones?wsdl";
+        String address = "http://localhost:8082/cotizaciones?wsdl";
         Endpoint.publish(address, implementor);
         // END SNIPPET: publish
     }

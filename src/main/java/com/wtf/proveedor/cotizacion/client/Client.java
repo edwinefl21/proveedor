@@ -28,7 +28,7 @@ public class Client {
 
     public static void main(String args[]) throws Exception {
         // Endpoint Address
-        String endpointAddress = "http://localhost:8080/cotizaciones?wsdl";
+        String endpointAddress = "http://localhost:8082/cotizaciones?wsdl";
         URL wsdllocation= new URL(endpointAddress);
         Service service = Service.create(wsdllocation, SERVICE_NAME);
         // Add a port to the Service

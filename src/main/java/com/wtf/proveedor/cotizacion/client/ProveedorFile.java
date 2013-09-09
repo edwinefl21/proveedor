@@ -19,13 +19,17 @@ public class ProveedorFile {
         System.out.println("getCotizacionFile called");
         Cotizacion cotizacion=CotizacionesUtil.readFile("C:/Files/Cotizacion.txt");
 
-        System.out.println("Identificacion: " + cotizacion.getIdCotizacion());
-        //System.out.println("  " + e.getKey() + ": " + e.getValue().getIdProveedor());
+        System.out.println("Identificación cotización: " + cotizacion.getIdCotizacion());
         System.out.println("Fecha cotizacion: " + cotizacion.getFechaCotizacion());
+        System.out.println("Precio Total: " + cotizacion.getTotalPrecio());
+        System.out.println();
         System.out.println("idProveedor: " + cotizacion.getProveedor().getIdProveedor());
         System.out.println("Proveedor: " + cotizacion.getProveedor().getNombre());
+        
          for (Item item : cotizacion.getDetalleCotizacion().getDetalle()) {
-              System.out.println("Producto: " + cotizacion.getProveedor().getNombre());
+              System.out.println("Producto item: " + item.getIdItem());
+              System.out.println("         descripción: " + item.getDescripcion());
+              System.out.println("         precio: " + item.getPrecio());
          }
       }
 }

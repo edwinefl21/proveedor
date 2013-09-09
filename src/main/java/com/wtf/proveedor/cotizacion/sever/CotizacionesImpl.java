@@ -18,6 +18,7 @@ import main.java.com.wtf.proveedor.cotizacion.cotizacion.Cotizacion;
 import main.java.com.wtf.proveedor.cotizacion.cotizacion.DetalleCotizacion;
 import main.java.com.wtf.proveedor.cotizacion.cotizacion.Item;
 import main.java.com.wtf.proveedor.cotizacion.cotizacion.Proveedor;
+import main.java.com.wtf.proveedor.cotizacion.util.CotizacionesUtil;
 
 @WebService(endpointInterface = "main.java.com.wtf.proveedor.cotizacion.sever.ICotizaciones",serviceName = "ICotizaciones")
 public class CotizacionesImpl implements ICotizaciones {
@@ -58,19 +59,11 @@ public class CotizacionesImpl implements ICotizaciones {
         
         cotizacion.setDetalleCotizacion(detalleCotizacion);
         //Total precio
-        cotizacion.setTotalPrecio(calculaPrecioCotizacion(cotizacion));
+        cotizacion.setTotalPrecio(CotizacionesUtil.calculaPrecioCotizacion(cotizacion));
         
         return cotizacion;
     }
     
     
-    private float calculaPrecioCotizacion(Cotizacion cotizacion){
-    	float sumaPrecio=0;
-    	for (Item item : cotizacion.getDetalleCotizacion().getDetalle()) {
-			sumaPrecio+=item.getPrecio();
-		}
-    	return sumaPrecio;
-    }
- 
 }
 // END SNIPPET: service
