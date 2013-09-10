@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.com.wtf.proveedor.cotizacion.cotizacion;
+package com.wtf.proveedor.cotizacion.cotizacion;
 
 import java.util.ArrayList;
 
@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author edwinefl
  */
 public class DetalleCotizacion {
-    ArrayList<Item> detalle;  
+    Item item;  
     int idDetalleCotizacion;
     int cantidad;
     
@@ -31,12 +31,12 @@ public class DetalleCotizacion {
 		this.cantidad = cantidad;
 	}
    
-    public ArrayList<Item> getDetalle() {
-        return detalle;
+    public Item getItem() {
+        return item;
     }
 
-    public void setDetalle(ArrayList<Item> detalle) {
-        this.detalle = detalle;
+    public void setItem(Item item) {
+        this.item = item;
     }
     
     

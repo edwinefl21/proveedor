@@ -2,13 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.com.wtf.proveedor.cotizacion.client;
+package com.wtf.proveedor.cotizacion.client;
 
 import java.util.Map;
 
-import main.java.com.wtf.proveedor.cotizacion.cotizacion.Cotizacion;
-import main.java.com.wtf.proveedor.cotizacion.cotizacion.Item;
-import main.java.com.wtf.proveedor.cotizacion.util.CotizacionesUtil;
+import com.wtf.proveedor.cotizacion.cotizacion.Cotizacion;
+import com.wtf.proveedor.cotizacion.cotizacion.DetalleCotizacion;
+import com.wtf.proveedor.cotizacion.cotizacion.Item;
+import com.wtf.proveedor.cotizacion.util.CotizacionesUtil;
 
 /**
  *
@@ -26,10 +27,10 @@ public class ProveedorFile {
         System.out.println("idProveedor: " + cotizacion.getProveedor().getIdProveedor());
         System.out.println("Proveedor: " + cotizacion.getProveedor().getNombre());
         
-         for (Item item : cotizacion.getDetalleCotizacion().getDetalle()) {
-              System.out.println("Producto item: " + item.getIdItem());
-              System.out.println("         descripción: " + item.getDescripcion());
-              System.out.println("         precio: " + item.getPrecio());
+         for (DetalleCotizacion detalle : cotizacion.getDetalleCotizacion()) {
+              System.out.println("Producto item: " + detalle.getItem().getIdItem());
+              System.out.println("         descripción: " + detalle.getItem().getDescripcion());
+              System.out.println("         precio: " + detalle.getItem().getPrecio());
          }
       }
 }

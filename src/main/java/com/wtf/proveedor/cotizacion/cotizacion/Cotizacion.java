@@ -2,17 +2,18 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.com.wtf.proveedor.cotizacion.cotizacion;
+package com.wtf.proveedor.cotizacion.cotizacion;
 
 /**
  *
  * @author edwinefl
  */
+import java.util.ArrayList;
 import java.util.Date;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import main.java.com.wtf.proveedor.cotizacion.cotizacion.DetalleCotizacion;
-import main.java.com.wtf.proveedor.cotizacion.cotizacion.Proveedor;
+import com.wtf.proveedor.cotizacion.cotizacion.DetalleCotizacion;
+import com.wtf.proveedor.cotizacion.cotizacion.Proveedor;
 
 public class Cotizacion {
     
@@ -20,9 +21,9 @@ public class Cotizacion {
     private Date fechaCotizacion;	
     private float totalPrecio;
     private Proveedor proveedor;
-    private DetalleCotizacion detalleCotizacion;
+    private ArrayList<DetalleCotizacion> detalleCotizacion;
     
-    public Cotizacion(){}
+	public Cotizacion(){}
     
     public String getIdCotizacion() {
 		return idCotizacion;
@@ -48,10 +49,11 @@ public class Cotizacion {
 	public void setProveedor(Proveedor proveedor) {
 		this.proveedor = proveedor;
 	}
-	public DetalleCotizacion getDetalleCotizacion() {
+	public ArrayList<DetalleCotizacion> getDetalleCotizacion() {
 		return detalleCotizacion;
 	}
-	public void setDetalleCotizacion(DetalleCotizacion detalleCotizacion) {
+
+	public void setDetalleCotizacion(ArrayList<DetalleCotizacion> detalleCotizacion) {
 		this.detalleCotizacion = detalleCotizacion;
 	}
 	

@@ -1,3 +1,4 @@
 idProveedor;NombreProveedor;IdCotizacion;FechaCotizacion;
-IdItem;DescripcionItem;PrecioItem;
-IdItem;DescripcionItem;PrecioItem;
+idDetalle;cantidad;IdItem;DescripcionItem;PrecioItem;
+idDetalle;cantidad;IdItem;DescripcionItem;PrecioItem;
+idDetalle;cantidad;IdItem;DescripcionItem;PrecioItem;

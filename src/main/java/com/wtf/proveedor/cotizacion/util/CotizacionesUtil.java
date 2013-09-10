@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.com.wtf.proveedor.cotizacion.util;
+package com.wtf.proveedor.cotizacion.util;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -11,10 +11,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
 
-import main.java.com.wtf.proveedor.cotizacion.cotizacion.Cotizacion;
-import main.java.com.wtf.proveedor.cotizacion.cotizacion.DetalleCotizacion;
-import main.java.com.wtf.proveedor.cotizacion.cotizacion.Item;
-import main.java.com.wtf.proveedor.cotizacion.cotizacion.Proveedor;
+import com.wtf.proveedor.cotizacion.cotizacion.Cotizacion;
+import com.wtf.proveedor.cotizacion.cotizacion.DetalleCotizacion;
+import com.wtf.proveedor.cotizacion.cotizacion.Item;
+import com.wtf.proveedor.cotizacion.cotizacion.Proveedor;
 
 /**
  * 
@@ -41,13 +41,13 @@ public class CotizacionesUtil {
 			// Leemos el encabezado el encabezado
 			llenarCotizacion(cotizacion, (String[]) strLinea.split(";"));
 
-			ArrayList<Item> detalleItems = new ArrayList<Item>();
+			ArrayList<DetalleCotizacion> detalleItems = new ArrayList<DetalleCotizacion>();
 			// Leer el archivo linea por linea
 			while ((strLinea = buffer.readLine()) != null) {
 				detalleItems.add(llenarDetalle((String[]) strLinea.split(";")));
 			}
-			detalle.setDetalle(detalleItems);
-			cotizacion.setDetalleCotizacion(detalle);
+			cotizacion.setDetalleCotizacion(detalleItems);
+			
 			//Total precio
 	        cotizacion.setTotalPrecio(CotizacionesUtil.calculaPrecioCotizacion(cotizacion));
 
@@ -72,21 +72,25 @@ public class CotizacionesUtil {
 		}
 	}
 
-	public static Item llenarDetalle(String[] linea) {
+	public static DetalleCotizacion llenarDetalle(String[] linea) {
 
-		Item item = new Item();
+		DetalleCotizacion detalle = new DetalleCotizacion();
 		if (linea != null && linea.length > 0) {
-			item.setIdItem(linea[0]);
-			item.setDescripcion(linea[1]);
-			item.setPrecio(Float.parseFloat(linea[2]));
+			detalle.setIdDetalleCotizacion(Integer.parseInt(linea[0]));
+			detalle.setCantidad(Integer.parseInt(linea[1]));
+			Item item=new Item();
+			item.setIdItem(linea[2]);
+			item.setDescripcion(linea[3]);
+			item.setPrecio(Float.parseFloat(linea[4]));
+			detalle.setItem(item);
 		}
-		return item;
+		return detalle;
 	}
 
 	public static float calculaPrecioCotizacion(Cotizacion cotizacion) {
 		float sumaPrecio = 0;
-		for (Item item : cotizacion.getDetalleCotizacion().getDetalle()) {
-			sumaPrecio += item.getPrecio();
+		for (DetalleCotizacion detalle : cotizacion.getDetalleCotizacion()) {
+			sumaPrecio += (detalle.getItem().getPrecio()*detalle.getCantidad());
 		}
 		return sumaPrecio;
 	}

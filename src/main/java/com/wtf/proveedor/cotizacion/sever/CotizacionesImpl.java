@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.com.wtf.proveedor.cotizacion.sever;
+package com.wtf.proveedor.cotizacion.sever;
 
 /**
  *
@@ -14,13 +14,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.jws.WebService;
 
-import main.java.com.wtf.proveedor.cotizacion.cotizacion.Cotizacion;
-import main.java.com.wtf.proveedor.cotizacion.cotizacion.DetalleCotizacion;
-import main.java.com.wtf.proveedor.cotizacion.cotizacion.Item;
-import main.java.com.wtf.proveedor.cotizacion.cotizacion.Proveedor;
-import main.java.com.wtf.proveedor.cotizacion.util.CotizacionesUtil;
+import com.wtf.proveedor.cotizacion.cotizacion.Cotizacion;
+import com.wtf.proveedor.cotizacion.cotizacion.DetalleCotizacion;
+import com.wtf.proveedor.cotizacion.cotizacion.Item;
+import com.wtf.proveedor.cotizacion.cotizacion.Proveedor;
+import com.wtf.proveedor.cotizacion.util.CotizacionesUtil;
 
-@WebService(endpointInterface = "main.java.com.wtf.proveedor.cotizacion.sever.ICotizaciones",serviceName = "ICotizaciones")
+@WebService(endpointInterface = "com.wtf.proveedor.cotizacion.sever.ICotizaciones",serviceName = "ICotizaciones")
 public class CotizacionesImpl implements ICotizaciones {
     
     /**
@@ -40,24 +40,22 @@ public class CotizacionesImpl implements ICotizaciones {
         proveedor.setNombre("Proveedor 001");
         cotizacion.setProveedor(proveedor);
         
-        DetalleCotizacion detalleCotizacion = new DetalleCotizacion();
-        ArrayList<Item> items=new ArrayList<Item>();
+        ArrayList<DetalleCotizacion> detalleCotizacion = new ArrayList<DetalleCotizacion>();
         		
+        
+        DetalleCotizacion detalle1= new DetalleCotizacion();
+        detalle1.setCantidad(2);
+        detalle1.setIdDetalleCotizacion(1);
+        
         Item item= new Item();
         item.setDescripcion("Computadores");
         item.setIdItem("COMP001");
         item.setPrecio(100000);
-        items.add(item);
+        detalle1.setItem(item);
         
-        Item item2= new Item();
-        item2.setDescripcion("Zapatos");
-        item2.setIdItem("ZAP001");
-        item2.setPrecio(10000);
-        items.add(item2);
-        
-        detalleCotizacion.setDetalle(items);
-        
+        detalleCotizacion.add(detalle1);
         cotizacion.setDetalleCotizacion(detalleCotizacion);
+
         //Total precio
         cotizacion.setTotalPrecio(CotizacionesUtil.calculaPrecioCotizacion(cotizacion));
         

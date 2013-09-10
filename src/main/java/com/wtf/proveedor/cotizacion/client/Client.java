@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.com.wtf.proveedor.cotizacion.client;
+package com.wtf.proveedor.cotizacion.client;
 
 import java.net.URL;
 import java.util.Map;
@@ -10,17 +10,18 @@ import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import javax.xml.ws.soap.SOAPBinding;
 
-import main.java.com.wtf.proveedor.cotizacion.cotizacion.Cotizacion;
-import main.java.com.wtf.proveedor.cotizacion.cotizacion.Item;
-import main.java.com.wtf.proveedor.cotizacion.sever.ICotizaciones;
+import com.wtf.proveedor.cotizacion.cotizacion.Cotizacion;
+import com.wtf.proveedor.cotizacion.cotizacion.DetalleCotizacion;
+import com.wtf.proveedor.cotizacion.cotizacion.Item;
+import com.wtf.proveedor.cotizacion.sever.ICotizaciones;
 
 /**
  *
  * @author edwinefl
  */
 public class Client {
-    private static final QName SERVICE_NAME = new QName("http://sever.cotizacion.proveedor.wtf.com.java.main/", "ICotizaciones");
-    private static final QName PORT_NAME = new QName("http://sever.cotizacion.proveedor.wtf.com.java.main/", "CotizacionesImpl");
+    private static final QName SERVICE_NAME = new QName("http://sever.cotizacion.proveedor.wtf.com/", "ICotizaciones");
+    private static final QName PORT_NAME = new QName("http://sever.cotizacion.proveedor.wtf.com/", "CotizacionesImpl");
 
 
     private Client() {
@@ -48,11 +49,11 @@ public class Client {
         System.out.println("idProveedor: " + cotizacion.getProveedor().getIdProveedor());
         System.out.println("Proveedor: " + cotizacion.getProveedor().getNombre());
         
-         for (Item item : cotizacion.getDetalleCotizacion().getDetalle()) {
-              System.out.println("Producto item: " + item.getIdItem());
-              System.out.println("         descripción: " + item.getDescripcion());
-              System.out.println("         precio: " + item.getPrecio());
-         }
+        for (DetalleCotizacion detalle : cotizacion.getDetalleCotizacion()) {
+            System.out.println("Producto item: " + detalle.getItem().getIdItem());
+            System.out.println("         descripción: " + detalle.getItem().getDescripcion());
+            System.out.println("         precio: " + detalle.getItem().getPrecio());
+       }
         
     }
 }
